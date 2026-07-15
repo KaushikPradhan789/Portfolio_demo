@@ -72,9 +72,6 @@ export default function About() {
         
         {/* Section Header with Reveal Animation */}
         <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
           variants={headerVariants}
           className="flex flex-col mb-16 space-y-3"
         >
@@ -97,9 +94,6 @@ export default function About() {
           
           {/* Left Column: Education and Story with reveals */}
           <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
             variants={textGroupVariants}
             className="lg:col-span-7 space-y-8 flex flex-col justify-between"
           >
@@ -171,9 +165,6 @@ export default function About() {
                 <motion.div
                   key={pillar.title}
                   custom={index}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: '-100px' }}
                   variants={cardVariants}
                   whileHover={{ 
                     y: -4, 
