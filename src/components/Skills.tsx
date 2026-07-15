@@ -44,6 +44,24 @@ export default function Skills() {
     }
   };
 
+  const headerVariants = {
+    hidden: { opacity: 0, y: 25 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.6, ease: 'easeOut' } 
+    }
+  };
+
+  const tabsVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      transition: { duration: 0.5, ease: 'easeOut' } 
+    }
+  };
+
   return (
     <section id="skills" className="py-24 bg-[#05040a] relative overflow-hidden">
       {/* Background glow structures */}
@@ -55,9 +73,7 @@ export default function Skills() {
         {/* Section Header with stagger */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={headerVariants}
             className="flex flex-col space-y-3"
           >
             <div className="inline-flex items-center space-x-2 text-violet-400 font-mono text-xs uppercase tracking-widest">
@@ -76,9 +92,7 @@ export default function Skills() {
 
           {/* Interactive Navigation Tabs with scale bounces */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            variants={tabsVariants}
             className="flex flex-wrap gap-2 bg-white/3 p-1.5 rounded-xl border border-white/5 w-fit relative z-20"
           >
             {tabs.map((tab) => (
