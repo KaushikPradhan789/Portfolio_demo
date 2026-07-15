@@ -130,7 +130,7 @@ export const PROJECTS: Project[] = [
       'Ensured seamless cross-device compatibility across phones, tablets, and legacy browsers'
     ],
     links: {
-      github:'https://github.com/',
+      github: 'https://github.com/',
       live: 'https://www.kiitecell.org/'
     }
   },
@@ -146,8 +146,9 @@ export const PROJECTS: Project[] = [
       'Created custom dashboards right inside TradingView to track multi-timeframe trends simultaneously',
       'Optimized script execution to operate efficiently on lower-frequency intra-day charts'
     ],
-     links: {
-      github:'https://github.com/',
+    links: {
+      github: 'https://github.com/',
       live: 'https:example.com'
+    }
   }
-  ];
+];
