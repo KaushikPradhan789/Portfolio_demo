@@ -292,7 +292,8 @@ export default function Projects() {
                 {/* Modal Header banner decorative */}
                 <div className="h-1.5 w-full bg-gradient-to-r from-amber-500 via-rose-500 to-violet-500" />
 
-                <div className="p-6 md:p-8 space-y-6 overflow-y-auto flex-1">
+                {/* Scrollable Container with adjusted mobile top-padding and lower vertical padding */}
+                <div className="p-5 md:p-8 pt-14 sm:pt-8 space-y-6 overflow-y-auto flex-1">
                   {/* Title and Category */}
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2">
@@ -317,7 +318,7 @@ export default function Projects() {
                   </div>
 
                   {/* Highlights Bullet list */}
-                  <div className="space-y-3 bg-white/3 border border-white/5 p-5 rounded-xl">
+                  <div className="space-y-3 bg-white/3 border border-white/5 p-4 sm:p-5 rounded-xl">
                     <h4 className="text-xs font-mono font-semibold text-gray-400 uppercase tracking-widest flex items-center space-x-1.5">
                       <CheckCircle2 size={12} className="text-amber-400" />
                       <span>Key Highlights & Results</span>
@@ -351,7 +352,7 @@ export default function Projects() {
                 </div>
 
                 {/* Modal Footer (Action row) */}
-                <div className="p-6 border-t border-white/5 bg-white/2 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
+                <div className="p-5 sm:p-6 border-t border-white/5 bg-white/2 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
                   <span className="text-[10px] font-mono text-gray-500">
                     Source code & deployment links are simulated
                   </span>
@@ -391,4 +392,3 @@ export default function Projects() {
     </section>
   );
 }
-
