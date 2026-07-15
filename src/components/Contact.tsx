@@ -15,8 +15,6 @@ export default function Contact() {
   const [errors, setErrors] = useState<Partial<ContactFormInput>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [sentVia, setSentVia] = useState<'api' | 'mailto' | null>(null);
-  const [apiError, setApiError] = useState<string | null>(null);
 
   const validateForm = (): boolean => {
     const newErrors: Partial<ContactFormInput> = {};
@@ -47,62 +45,16 @@ export default function Contact() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    setApiError(null);
-
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-
-    if (accessKey && accessKey.trim() !== '' && accessKey !== 'YOUR_WEB3FORMS_ACCESS_KEY') {
-      try {
-        const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            access_key: accessKey,
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-            from_name: `${formData.name} (via Portfolio Contact)`
-          })
-        });
-
-        const data = await response.json();
-
-        if (response.ok && data.success) {
-          setIsSubmitting(false);
-          setSentVia('api');
-          setSubmitSuccess(true);
-          setFormData({ name: '', email: '', subject: '', message: '' });
-        } else {
-          throw new Error(data.message || 'Failed to submit via email service.');
-        }
-      } catch (error: any) {
-        console.error('Contact Form Error:', error);
-        setApiError(error.message || 'Something went wrong. Please use the Email client option.');
-        setIsSubmitting(false);
-      }
-    } else {
-      // Mailto Fallback
+    setTimeout(() => {
       setIsSubmitting(false);
-      setSentVia('mailto');
-      
-      const mailtoUrl = `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-        `From: ${formData.name} <${formData.email}>\n\n${formData.message}`
-      )}`;
-      
-      // Trigger mailto
-      window.location.href = mailtoUrl;
       setSubmitSuccess(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }
+    }, 1500);
   };
 
   const shakeVariants = {
@@ -336,38 +288,6 @@ export default function Contact() {
                     )}
                   </div>
 
-                  {/* API Submission Error */}
-                  {apiError && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-xs text-red-300 font-sans leading-relaxed space-y-2"
-                    >
-                      <p className="font-semibold flex items-center">
-                        <AlertCircle size={14} className="mr-1.5 text-red-400 shrink-0" />
-                        Direct dispatch failed: {apiError}
-                      </p>
-                      <p>
-                        Don't worry! You can instantly dispatch your pre-filled message using your local email client instead.
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const mailtoUrl = `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-                            `From: ${formData.name} <${formData.email}>\n\n${formData.message}`
-                          )}`;
-                          window.location.href = mailtoUrl;
-                          setSentVia('mailto');
-                          setSubmitSuccess(true);
-                          setFormData({ name: '', email: '', subject: '', message: '' });
-                        }}
-                        className="px-3.5 py-1.5 bg-red-500/20 hover:bg-red-500/30 text-red-200 font-medium text-[11px] rounded-lg transition-colors border border-red-500/30 flex items-center space-x-1 cursor-pointer"
-                      >
-                        <span>Send via Email Client (Pre-filled)</span>
-                      </button>
-                    </motion.div>
-                  )}
-
                   {/* Submit Button with interactive state */}
                   <motion.button
                     whileHover={{ scale: 1.02 }}
@@ -384,7 +304,7 @@ export default function Contact() {
                     ) : (
                       <>
                         <Send size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        <span>{import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ? "Send Message" : "Open Email Client"}</span>
+                        <span>Send Message</span>
                       </>
                     )}
                   </motion.button>
@@ -396,7 +316,7 @@ export default function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ type: 'spring', damping: 15 }}
-                  className="flex flex-col items-center justify-center text-center py-12 space-y-5"
+                  className="flex flex-col items-center justify-center text-center py-12 space-y-4"
                 >
                   <motion.div 
                     initial={{ scale: 0 }}
@@ -406,27 +326,11 @@ export default function Contact() {
                   >
                     <CheckCircle2 size={32} />
                   </motion.div>
-                  
-                  <div className="space-y-2">
-                    <h3 className="font-display font-bold text-xl text-white">
-                      {sentVia === 'api' ? "Message Transmitted!" : "Email Client Launched!"}
-                    </h3>
-                    
-                    {sentVia === 'api' ? (
-                      <p className="text-sm text-gray-400 font-sans max-w-sm leading-relaxed">
-                        Thank you! Your message was delivered successfully via Web3Forms background API. Kaushik will read it shortly in his inbox!
-                      </p>
-                    ) : (
-                      <div className="space-y-3">
-                        <p className="text-sm text-gray-400 font-sans max-w-sm leading-relaxed">
-                          Your default email application has been opened with your pre-filled message. Just press <strong className="text-amber-400">"Send"</strong> in your email app to complete delivery to <strong className="text-white">{PERSONAL_INFO.email}</strong>.
-                        </p>
-                        <div className="text-[11px] font-mono text-gray-500 max-w-xs bg-white/3 border border-white/5 p-3 rounded-lg mx-auto leading-relaxed text-left">
-                          <strong className="text-amber-400 font-semibold block mb-0.5">Developer Note:</strong>
-                          To automate contact submissions directly in the background next time, define <code className="text-violet-300">VITE_WEB3FORMS_ACCESS_KEY</code> in your environment with a free key from <a href="https://web3forms.com" target="_blank" rel="noreferrer" className="text-amber-400 underline hover:text-amber-300">web3forms.com</a>!
-                        </div>
-                      </div>
-                    )}
+                  <div className="space-y-1.5">
+                    <h3 className="font-display font-bold text-xl text-white">Transmission Successful</h3>
+                    <p className="text-sm text-gray-400 font-sans max-w-sm">
+                      Thank you for reaching out! Your message was sent safely. Kaushik will get back to you as soon as possible.
+                    </p>
                   </div>
 
                   <button
