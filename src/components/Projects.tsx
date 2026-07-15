@@ -272,18 +272,18 @@ export default function Projects() {
                 className="absolute inset-0 bg-black/80 backdrop-blur-md"
               />
 
-              {/* Modal Box */}
+              {/* Modal Box with significantly lower mobile height */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 30 }}
                 transition={{ type: 'spring', damping: 20, stiffness: 140 }}
-                className="bg-[#0e0a1b] border border-white/10 rounded-2xl w-full max-w-2xl overflow-hidden relative shadow-2xl z-10 max-h-[90vh] flex flex-col"
+                className="bg-[#0e0a1b] border border-white/10 rounded-2xl w-full max-w-2xl overflow-hidden relative shadow-2xl z-10 max-h-[75vh] sm:max-h-[90vh] flex flex-col"
               >
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-all duration-200 z-20 focus:outline-none cursor-pointer"
+                  className="absolute top-3 right-3 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-all duration-200 z-20 focus:outline-none cursor-pointer"
                   aria-label="Close details"
                 >
                   <X size={18} />
@@ -292,8 +292,8 @@ export default function Projects() {
                 {/* Modal Header banner decorative */}
                 <div className="h-1.5 w-full bg-gradient-to-r from-amber-500 via-rose-500 to-violet-500" />
 
-                {/* Scrollable Container with adjusted mobile top-padding and lower vertical padding */}
-                <div className="p-5 md:p-8 pt-14 sm:pt-8 space-y-6 overflow-y-auto flex-1">
+                {/* Scrollable Container with tighter padding and top-padding safety for close button */}
+                <div className="p-4 sm:p-8 pt-12 sm:pt-8 space-y-4 sm:space-y-6 overflow-y-auto flex-1">
                   {/* Title and Category */}
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2">
@@ -302,28 +302,28 @@ export default function Projects() {
                         {getCategoryLabel(selectedProject.category)}
                       </span>
                     </div>
-                    <h3 className="font-display font-extrabold text-2xl text-white">
+                    <h3 className="font-display font-extrabold text-xl sm:text-2xl text-white">
                       {selectedProject.title}
                     </h3>
                   </div>
 
                   {/* Comprehensive narrative */}
-                  <div className="space-y-4">
-                    <h4 className="text-xs font-mono font-semibold text-gray-500 uppercase tracking-widest">
+                  <div className="space-y-3">
+                    <h4 className="text-[10px] sm:text-xs font-mono font-semibold text-gray-500 uppercase tracking-widest">
                       Project Overview
                     </h4>
-                    <p className="text-sm text-gray-300 font-sans leading-relaxed">
+                    <p className="text-xs sm:text-sm text-gray-300 font-sans leading-relaxed">
                       {selectedProject.detailedDescription}
                     </p>
                   </div>
 
                   {/* Highlights Bullet list */}
-                  <div className="space-y-3 bg-white/3 border border-white/5 p-4 sm:p-5 rounded-xl">
-                    <h4 className="text-xs font-mono font-semibold text-gray-400 uppercase tracking-widest flex items-center space-x-1.5">
+                  <div className="space-y-2.5 bg-white/3 border border-white/5 p-3.5 sm:p-5 rounded-xl">
+                    <h4 className="text-[10px] sm:text-xs font-mono font-semibold text-gray-400 uppercase tracking-widest flex items-center space-x-1.5">
                       <CheckCircle2 size={12} className="text-amber-400" />
                       <span>Key Highlights & Results</span>
                     </h4>
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-2">
                       {selectedProject.highlights.map((highlight, index) => (
                         <li key={index} className="text-xs sm:text-sm text-gray-400 flex items-start space-x-2 leading-relaxed">
                           <span className="text-amber-400 font-semibold">•</span>
@@ -335,14 +335,14 @@ export default function Projects() {
 
                   {/* Tech stack badges */}
                   <div className="space-y-2">
-                    <h4 className="text-xs font-mono font-semibold text-gray-500 uppercase tracking-widest">
+                    <h4 className="text-[10px] sm:text-xs font-mono font-semibold text-gray-500 uppercase tracking-widest">
                       Full Technologies Used
                     </h4>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {selectedProject.techStack.map((tech) => (
                         <span
                           key={tech}
-                          className="text-xs font-mono text-amber-300 bg-amber-500/5 border border-amber-500/10 px-2.5 py-1 rounded-lg"
+                          className="text-[10px] sm:text-xs font-mono text-amber-300 bg-amber-500/5 border border-amber-500/10 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg"
                         >
                           {tech}
                         </span>
@@ -352,8 +352,8 @@ export default function Projects() {
                 </div>
 
                 {/* Modal Footer (Action row) */}
-                <div className="p-5 sm:p-6 border-t border-white/5 bg-white/2 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
-                  <span className="text-[10px] font-mono text-gray-500">
+                <div className="p-4 sm:p-6 border-t border-white/5 bg-white/2 flex flex-col sm:flex-row justify-between items-center gap-3 shrink-0">
+                  <span className="text-[9px] sm:text-[10px] font-mono text-gray-500">
                     Source code & deployment links are simulated
                   </span>
                   
@@ -363,7 +363,7 @@ export default function Projects() {
                         href={selectedProject.links.github}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex-1 sm:flex-none flex items-center justify-center space-x-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-semibold text-gray-200 hover:text-white transition-all duration-300"
+                        className="flex-1 sm:flex-none flex items-center justify-center space-x-2 px-3.5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-semibold text-gray-200 hover:text-white transition-all duration-300"
                       >
                         <Github size={14} />
                         <span>Source Code</span>
@@ -374,7 +374,7 @@ export default function Projects() {
                         href={selectedProject.links.live}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex-1 sm:flex-none flex items-center justify-center space-x-2 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-violet-600 text-white rounded-xl text-xs font-semibold hover:opacity-90 shadow-glow-amber transition-all duration-300"
+                        className="flex-1 sm:flex-none flex items-center justify-center space-x-2 px-3.5 py-2 bg-gradient-to-r from-amber-500 to-violet-600 text-white rounded-xl text-xs font-semibold hover:opacity-90 shadow-glow-amber transition-all duration-300"
                       >
                         <ExternalLink size={14} />
                         <span>Live Demo</span>
