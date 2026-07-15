@@ -13,7 +13,7 @@ export const PERSONAL_INFO = {
   education: {
     degree: 'B.Tech in Computer Science & Engineering (Specialization in AI & ML)',
     institution: 'Kalinga Institute of Industrial Technology (KIIT), Bhubaneswar',
-    period: '2022 - 2026',
+    period: '2025 - 2029',
     achievements: [
       'Focusing on Neural Networks, Machine Learning, and Design Analysis of Algorithms',
       'Active technical member in organizing web events and platform development',
@@ -27,28 +27,28 @@ export const SKILLS: Skill[] = [
   {
     name: 'React.js',
     category: 'frontend',
-    level: 90,
+    level: 75,
     iconName: 'React',
     description: 'Dynamic and scalable single-page applications'
   },
   {
     name: 'Next.js',
     category: 'frontend',
-    level: 85,
+    level: 75,
     iconName: 'Nextjs',
     description: 'Server-side rendering, static site generation, and performance'
   },
   {
     name: 'Vite',
     category: 'frontend',
-    level: 90,
+    level: 80,
     iconName: 'Vite',
     description: 'Ultra-fast bundling and modern frontend developer tooling'
   },
   {
     name: 'Tailwind CSS',
     category: 'frontend',
-    level: 95,
+    level: 90,
     iconName: 'Tailwind',
     description: 'Utility-first styling, fluid layouts, and theme architectures'
   },
@@ -64,7 +64,7 @@ export const SKILLS: Skill[] = [
   {
     name: 'Linux',
     category: 'tools',
-    level: 85,
+    level: 80,
     iconName: 'Linux',
     description: 'Bash scripting, system administration, and development environment'
   },
@@ -75,19 +75,11 @@ export const SKILLS: Skill[] = [
     iconName: 'Git',
     description: 'Version control, collaborative workflows, and actions for CI/CD'
   },
-  {
-    name: 'npm / Yarn',
-    category: 'tools',
-    level: 88,
-    iconName: 'Npm',
-    description: 'Package management and build chain pipeline execution'
-  },
-
   // Specializations
   {
     name: 'AI/ML Concepts',
     category: 'specialization',
-    level: 80,
+    level: 45,
     iconName: 'Brain',
     description: 'Supervised/unsupervised learning, computer vision, and neural nets'
   },
@@ -121,8 +113,8 @@ export const PROJECTS: Project[] = [
       'Provides alternative, healthier local recommendations based on food category'
     ],
     links: {
-      github: 'https://github.com',
-      live: 'https://example.com'
+      github: 'https://github.com/KaushikPradhan789/nutrimark-app-demo',
+      live: 'https://nutrimark-app-demo.vercel.app/'
     }
   },
   {
@@ -138,8 +130,7 @@ export const PROJECTS: Project[] = [
       'Ensured seamless cross-device compatibility across phones, tablets, and legacy browsers'
     ],
     links: {
-      github: 'https://github.com',
-      live: 'https://example.com'
+      live: 'https://www.kiitecell.org/'
     }
   },
   {
@@ -154,9 +145,5 @@ export const PROJECTS: Project[] = [
       'Created custom dashboards right inside TradingView to track multi-timeframe trends simultaneously',
       'Optimized script execution to operate efficiently on lower-frequency intra-day charts'
     ],
-    links: {
-      github: 'https://github.com',
-      live: 'https://example.com'
-    }
   }
 ];
