@@ -6,8 +6,8 @@ export const PERSONAL_INFO = {
   tagline: 'Building Scalable Web Architectures & Intelligent Automation workflows',
   location: 'Bhubaneswar, Odisha, India',
   email: 'kaushikpradhan19@gmail.com',
-  github: 'https://github.com',
-  linkedin: 'https://linkedin.com',
+  github: 'https://github.com/KaushikPradhan789',
+  linkedin: 'https://www.linkedin.com/in/kaushik-pradhan-ab9342301/',
   bio: 'A passionate Computer Science & Engineering student at KIIT University specializing in Artificial Intelligence and Machine Learning. Deeply interested in the intersection of scalable web technologies, quantitative systems, and intelligent automation.',
   detailedBio: 'Currently pursuing a B.Tech in Computer Science and Engineering with a focus on AI & ML, I combine academic rigor with practical development. I love architecting responsive frontend applications, building automated pipelines, and developing quantitative trading models. My goal is to create impactful products that make data intuitive and workflows highly automated.',
   education: {
