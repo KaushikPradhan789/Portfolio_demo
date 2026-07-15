@@ -150,4 +150,4 @@ export const PROJECTS: Project[] = [
       github:'https://github.com/',
       live: 'https:example.com'
   }
-  };
+  ];
