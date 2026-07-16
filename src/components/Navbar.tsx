@@ -201,6 +201,7 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            key="mobile-menu-drawer"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -210,6 +211,7 @@ export default function Navbar() {
             <motion.div 
               initial="closed"
               animate="open"
+              exit="closed"
               variants={{
                 open: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
                 closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
@@ -281,4 +283,3 @@ export default function Navbar() {
     </>
   );
 }
-
