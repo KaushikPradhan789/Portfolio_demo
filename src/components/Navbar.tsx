@@ -3,10 +3,16 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 import { PERSONAL_INFO } from '../data';
 
+// TypeScript definitions for Nav Items
+interface NavItem {
+  label: string;
+  href: string;
+}
+
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [activeSection, setActiveSection] = useState<string>('hero');
 
   // Top progress bar tracker
   const { scrollYProgress } = useScroll();
@@ -16,7 +22,7 @@ export default function Navbar() {
     restDelta: 0.001
   });
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { label: 'About', href: '#about' },
     { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
@@ -97,7 +103,7 @@ export default function Navbar() {
           {/* Logo with magnetic hover effect */}
           <a
             href="#hero"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
               setActiveSection('hero');
